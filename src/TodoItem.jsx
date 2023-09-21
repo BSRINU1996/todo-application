@@ -8,9 +8,9 @@ const TodoItem = (props) => {
     const { id, todoItem, handleDelete } = props;
     // console.log(todos);
     return (
-        <div style={{ display: "flex", justifyContent: "space-around", border: "2px solid black" }}>
+        <div style={{ display: "flex", justifyContent: "space-around" }}>
             <h2>{todoItem}</h2>
-            <CloseIcon style={{ border: "2px solid black", marginTop: "18px", cursor: "pointer" }} onClick={() => handleDelete(id)} />
+            <CloseIcon style={{ marginTop: "20px", cursor: "pointer" }} onClick={() => handleDelete(id)} />
         </div>
     )
 }
