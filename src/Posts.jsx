@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react'
 
 const getData = async (page) =>{
-    let res = await fetch(`https://jsonplaceholder.typicode.com/posts?_page=${page}&_limit=10`)
+    let res = await fetch(`https://jsonplaceholder.typicode.com/posts`)
       let data =await res.json()
       return data;
 }
@@ -28,6 +28,7 @@ const Posts = () => {
     
 const handlePageChange =(x) => {
   page>= 1 ? (setPage(page + x))  : setPage(1) ;
+
 }
 
 
@@ -42,11 +43,12 @@ const handlePageChange =(x) => {
     useEffect(()=>{
       fetchAndUpdateData(page)
     },[page]);
-    const fetchAndUpdateData =  async(page=1) => {
+    const fetchAndUpdateData =  async(page=1,itemsPerPage=10) => {
        try{
           setIsLoading(true);
           const data = await getData(page);
-          setPosts(data);
+         const finalData =  data.slice((page*itemsPerPage)-9,page*itemsPerPage)
+          setPosts(finalData);
           setIsLoading(false);
        }catch(e){
         setIsLoading(false);
@@ -55,7 +57,8 @@ const handlePageChange =(x) => {
     }
 
     
-    console.log(posts)
+    
+    
     // const getFetchUpdatedData =async() => {
     //        const data = await getData();
     //        setPosts(data);
