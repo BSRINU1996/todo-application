@@ -6,11 +6,11 @@ const Timer = () => {
     useEffect(()=>{
         console.log("callBack in the useEffect called")
         let IntervalId = setInterval(()=>{
-            console.log('callback inside setInterval');
+            console.log(`callback inside setInterval `);
             // setValue(value-1)},1000)   //(prevValue)=>prevValue-1
             setValue((prevValue)=>{
                 if(prevValue <= 1){
-                    clearInterval(IntervalId)
+                    // clearInterval(IntervalId)
                     return 0;
                 }else{
                     return prevValue-1;
