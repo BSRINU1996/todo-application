@@ -6,11 +6,14 @@ import './App.css';
 // import Problem from './Problem'
 // import BatchUpdate from './BatchUpdate'
 // import TicTacToe from './TicTacToe';
-import Posts from './Posts';
+// import Posts from './Posts';
+import Timer from './Timer'
 // import Practice from './Practice.js';
+import {useState} from 'react'
 
 
 function App() {
+  const [showTimer,setShowTimer] = useState(true);
   return (
     <div className="App">
       {/* <h1>Counter</h1> */}
@@ -21,7 +24,10 @@ function App() {
       {/* <Practice /> */}
       {/* <BatchUpdate /> */}
       {/* <TicTacToe/> */}
-      <Posts/>
+      {/* <Posts/> */}
+      
+      {showTimer && <Timer/>}
+      <button onClick={()=>{setShowTimer(!showTimer)}}>{showTimer ? "HIDE COUNTER" : "SHOW COUNTER"   }</button>
 
     </div>
   );

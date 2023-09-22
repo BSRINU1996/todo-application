@@ -10,6 +10,7 @@ const Posts = () => {
     const [posts,setPosts] = useState([]);
     const [isLoading,setIsLoading] = useState(false);
     const [page,setPage] = useState(1);
+    const [count,setCount] = useState(0);
     // const [itemsPerPage] = useState(10);
 
     //1 --> 1-10
@@ -43,6 +44,15 @@ const handlePageChange =(x) => {
     useEffect(()=>{
       fetchAndUpdateData(page)
     },[page]);
+    // useEffect(()=>{
+    //   fetchAndUpdateData(page)
+    // });
+//  if we removed this dependency  infinite loop is occured. BECAUSE OF THIS SETpOSTS IN THE fetchAndUpdateData async await function.
+//if we removed dependency , for any state change, i.e for any ui rendern the call back in the fetch got called.
+//99.99 % of the time swe dont use this pattern.
+
+
+
     const fetchAndUpdateData =  async(page=1,itemsPerPage=10) => {
        try{
           setIsLoading(true);
@@ -50,6 +60,7 @@ const handlePageChange =(x) => {
          const finalData =  data.slice((page*itemsPerPage)-9,page*itemsPerPage)
           setPosts(finalData);
           setIsLoading(false);
+        console.log('fetch and update dATA GOT CALLED')
        }catch(e){
         setIsLoading(false);
           console.log(e.message);
@@ -70,15 +81,17 @@ const handlePageChange =(x) => {
 
   return (
     <>
+       <h1>{count}</h1>
+       <button onClick={()=>{setCount(count+1)}}>Inc</button>
        <h1>Posts</h1>
        {/* <button onClick={getFetchUpdatedData}>get posts</button> */}
        <ul style={{listStyleType:'none'}}>
          {posts.map((eachItem)=> <li key={eachItem.id}  >{eachItem.id}---{eachItem.title}</li>)}
       </ul>
       <div>
-      <button onClick={()=>{handlePageChange(-1)}}>Prev</button>
+      <button disabled={page===1} onClick={()=>{handlePageChange(-1)}}>Prev</button>
       <button>{page}</button>
-      <button onClick={()=>{handlePageChange(+1)}}>Next</button>
+      <button disabled={page===10} onClick={()=>{handlePageChange(+1)}}>Next</button>
       </div>
     </>
   )
