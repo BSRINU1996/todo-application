@@ -7,9 +7,10 @@ import './App.css';
 // import BatchUpdate from './BatchUpdate'
 // import TicTacToe from './TicTacToe';
 // import Posts from './Posts';
-import Timer from './Timer'
+// import Timer from './Timer'
 // import Practice from './Practice.js';
 import {useState} from 'react'
+import CustomHook from './CustomHook'
 
 
 function App() {
@@ -26,9 +27,9 @@ function App() {
       {/* <TicTacToe/> */}
       {/* <Posts/> */}
       
-      {showTimer && <Timer/>}
-      <button onClick={()=>{setShowTimer(!showTimer)}}>{showTimer ? "HIDE COUNTER" : "SHOW COUNTER"   }</button>
-
+      {/* {showTimer && <Timer/>} */}
+      {/* <button onClick={()=>{setShowTimer(!showTimer)}}>{showTimer ? "HIDE COUNTER" : "SHOW COUNTER"   }</button> */}
+       <CustomHook/>
     </div>
   );
 }

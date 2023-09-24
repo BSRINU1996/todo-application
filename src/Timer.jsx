@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react'
 
 const Timer = () => {
-    const [value, setValue]=useState(20);
+    const [value, setValue]=useState(10);
 
     useEffect(()=>{
         console.log("callBack in the useEffect called")
