@@ -16,6 +16,11 @@ const RefPract = () => {
        clearInterval(ref.current);
        ref.current = null;
    }
+   const handleReset = () => {
+       setCount(30);
+       clearInterval(ref.current);
+       ref.current = null;
+   }
   return (
     <>
     <h1>
@@ -24,6 +29,7 @@ const RefPract = () => {
     <h1>{count}</h1>
     <button onClick={handleStart}>start</button>
     <button onClick={handleStop}>stop</button>
+    <button onClick={handleReset}>reset</button>
     {/* {ref.current.map((each,index)=><h1 key={index}>{each}</h1>)} */}
     </>
   )
